@@ -1,0 +1,30 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		Upcoming Events
+	</div>
+	<div class="panel-body">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <%= event.name %>
+          </div>
+          <div class="panel-body">
+            <p class="lead">
+              <%= event.description %>
+              <small>
+                <%= event.technology %>
+              </small>
+            </p>      
+            <p>
+              <small class="text-muted">
+                <%= event.venue %> - <%= event.event_date %>
+              </small>
+            </p>
+            <%= link_to 'Register Here', new_participant_path, class:'btn btn-sm btn-primary' %>
+          </div>  
+        </div>
+      </div>
+    <% end %>  
+	</div>
+</div>
