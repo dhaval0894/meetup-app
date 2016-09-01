@@ -21,12 +21,32 @@ class EventsController < ApplicationController
 	end	
 
 	def edit
+    @event = Event.find(params[:id])
 	end	
 
 	def update
+    @event = Event.find(params[:id])
+
+    respond_to do |format|
+      if @event.update_attributes(event_params)
+        format.html { redirect_to events_path, notice: 'Course was successfully updated.' }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
+  end  
+
+  def show
+    @event = Event.find(params[:id])
   end  
 
 	def delete
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    respond_to do |format|
+      format.html { redirect_to events_path }
+    end
 	end	
 
 	private

@@ -11,7 +11,7 @@
           </div>
           <div class="panel-body">
             <p class="lead">
-              <%= event.description %>
+              <%= event.description %> <br/>
               <small>
                 <%= event.technology %>
               </small>
@@ -22,6 +22,7 @@
               </small>
             </p>
             <%= link_to 'Register Here', new_participant_path, class:'btn btn-sm btn-primary' %>
+            <%= link_to 'View Details', event_path(event.id), class:'btn btn-sm btn-success' %>
           </div>  
         </div>
       </div>
