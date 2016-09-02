@@ -49,7 +49,29 @@ class EventsController < ApplicationController
     end
 	end	
 
+  def register
+    @event = Event.find(params[:event_id])
+    @participant = @event.participants.new
+  end  
+
+  def register_participant
+    @event = Event.find(params[:event_id])
+    @participant = @event.participants.new(participant_params)
+
+    respond_to do |format|
+      if @participant.save
+        format.html { redirect_to event_path(@event) }
+      else
+        format.html { render action: 'register' }
+      end  
+    end
+  end  
+
 	private
+
+    def participant_params
+      params.require(:participant).permit(:name, :email, :contact, :suggestion, :gender, :event_id)
+    end  
 
     # Never trust parameters from the scary internet, only allow the white list through.
   	def event_params

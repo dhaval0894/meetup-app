@@ -1,0 +1,59 @@
+<%= form_for(@participant, as: :participant, url: event_participants_path(@event.id),:html => { :class => 'form-horizontal'}) do |f| %>
+  
+  <fieldset>
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= f.label :name, "Full Name", :class => 'label-control' %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_field :name, :placeholder => 'Enter Full Name', :class => 'form-control', autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= f.label :gender, "Gender", :class => 'label-control' %><br />
+      </div>
+      <div class="col-md-8">
+        <%= f.radio_button :gender, "Male" %>
+        <%= label :gender, "Male" %>
+        <%= f.radio_button :gender, "Female" %>
+        <%= label :gender, "Female" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= f.label :email, "Email", :class => 'label-control' %><br />
+      </div>
+      <div class="col-md-8">
+        <%= f.text_field :email, :placeholder => 'Enter Email-ID', :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= f.label :contact, "Contact Number", :class => 'label-control' %><br />
+      </div>
+      <div class="col-md-8">
+        <%= f.text_field :contact, :placeholder => 'Enter Contact Number', :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= f.label :suggestion, "Suggestion/Query", :class => 'label-control' %>
+      </div>
+      <div class="col-md-8">
+        <%= f.text_area :suggestion, :placeholder => 'Enter Suggesion/Query', :class => 'form-control', rows:'6' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-4 col-md-6"> 
+       <%= f.submit "Submit", :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </fieldset>  
+
+<% end %>

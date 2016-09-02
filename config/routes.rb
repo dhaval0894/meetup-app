@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root 'events#index'
 
-  resources :events
-  resources :participants
+  resources :events do
+    get '/participants/new' => 'events#register'
+    post '/participants' => 'events#register_participant'
+  end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
