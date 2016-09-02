@@ -67,15 +67,36 @@ class EventsController < ApplicationController
     end
   end  
 
-	private
+  def speaker
+    @event = Event.find(params[:event_id])
+    @speaker = @event.build_speaker
+  end  
 
-    def participant_params
-      params.require(:participant).permit(:name, :email, :contact, :suggestion, :gender, :event_id)
-    end  
+  def add_speaker
+    @event = Event.find(params[:event_id])
+    @speaker = @event.build_speaker(speaker_params)
+
+    respond_to do |format|
+      if @speaker.save
+        format.html { redirect_to event_path(@event) }
+      else
+        format.html { render action: 'speaker' }
+      end  
+    end
+  end  
+
+	private
 
     # Never trust parameters from the scary internet, only allow the white list through.
   	def event_params
   		params.require(:event).permit(:name, :description, :technology, :agenda, :pre_requisite, :venue, :event_date)
   	end	
 
+    def participant_params
+      params.require(:participant).permit(:name, :email, :contact, :suggestion, :gender, :event_id)
+    end
+
+    def speaker_params
+      params.require(:speaker).permit(:name, :email, :bio, :event_id)
+    end  
 end
