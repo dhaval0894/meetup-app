@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160901131445) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160901131445) do
     t.integer  "event_id"
   end
 
-  add_index "participants", ["event_id"], name: "index_participants_on_event_id"
+  add_index "participants", ["event_id"], name: "index_participants_on_event_id", using: :btree
 
   create_table "speakers", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160901131445) do
     t.integer  "event_id"
   end
 
-  add_index "speakers", ["event_id"], name: "index_speakers_on_event_id"
+  add_index "speakers", ["event_id"], name: "index_speakers_on_event_id", using: :btree
 
+  add_foreign_key "participants", "events"
+  add_foreign_key "speakers", "events"
 end
