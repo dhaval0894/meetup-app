@@ -28,6 +28,13 @@
           Date: <%= @event.event_date.strftime('%d-%b-%Y') if @event.event_date.present? %>
         </small>
       </p>
+      <% if @event.speaker.present? %>
+        <p>
+          By: <%= @event.speaker.name %>
+        </p>
+      <% else %>
+        <%= link_to 'Add Speaker', event_speakers_new_path(@event), class: 'btn btn-sm btn-warning'%>
+      <% end %>
     </div>
   </div>
 
