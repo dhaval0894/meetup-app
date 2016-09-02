@@ -11,17 +11,18 @@
           </div>
           <div class="panel-body">
             <p class="lead">
-              <%= event.description %>
+              <%= event.description %> <br/>
               <small>
                 <%= event.technology %>
               </small>
             </p>      
             <p>
-              <small class="text-muted">
-                <%= event.venue %> - <%= event.event_date %>
+              <small class="text-info">
+                <%= event.venue %> - <%= event.event_date.strftime('%d-%b-%Y') if event.event_date.present? %>
               </small>
             </p>
-            <%= link_to 'Register Here', new_participant_path, class:'btn btn-sm btn-primary' %>
+            <%= link_to 'Register Here', event_participants_new_path(event.id), class:'btn btn-sm btn-primary' %>
+            <%= link_to 'View Details', event_path(event.id), class:'btn btn-sm btn-success' %>
           </div>  
         </div>
       </div>
